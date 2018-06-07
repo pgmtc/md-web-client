@@ -6,7 +6,8 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production node build/build.js",
     "watch": "webpack --config build/webpack.prod.conf.js --watch",
-    "dev": "webpack-dev-server --config build/webpack.dev.conf.js --progress --colors --port 8080 --inline --host 0.0.0.0"
+    "dev": "webpack-dev-server --config build/webpack.dev.conf.js --progress --colors --port 8080 --inline --host 0.0.0.0",
+    "start": "http-server dist/ -p $PORT"
   },
   "repository": {
     "type": "git",
@@ -84,5 +85,8 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
 }
