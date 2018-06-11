@@ -23,6 +23,7 @@
 
 <script>
 import axios from 'axios'
+import Context from 'md-lib/client/Context'
 
 export default {
   name: 'portlet-wrapper',
@@ -36,7 +37,33 @@ export default {
       title: ''
     }
   },
-  computed: {},
+  computed: {
+    $context () {
+      let ctx = new Context()
+      ctx.WS_ENDPOINT_URL = '/md/ws'
+      ctx.API_ENDPOINT_URL = '/md/api'
+      ctx.def = JSON.stringify(this.def)
+      ctx.axios = axios
+      ctx.socket = this.socket
+
+      var that = this
+
+      ctx.api.inProgress = (value) => {
+        that.inProgress = value
+      }
+
+      ctx.api.setTitle = (value) => {
+        that.title = value
+      }
+
+      ctx.api.error = (value) => {
+        that.inError = true
+        that.errorMessage = value
+      }
+
+      return ctx
+    }
+  },
   methods: {
     method () {
     }
@@ -52,28 +79,7 @@ export default {
     var tc
     try {
       eval('tc = new ' + this.def.class + '()')
-      tc.register(this.$refs.contentElement, {
-        def: JSON.parse(JSON.stringify(this.def)),
-        axios: axios,
-        socket: this.socket,
-        wsEndpointUrl: '/md/ws',
-        apiEndpointUrl: '/md/api',
-        inProgress: (value) => {
-          this.inProgress = value
-        },
-        api: {
-          inProgress: (value) => {
-            this.inProgress = value
-          },
-          setTitle: (value) => {
-            this.title = value
-          },
-          error: (value) => {
-            this.inError = true
-            this.errorMessage = value
-          }
-        }
-      })
+      tc.register(this.$refs.contentElement, this.$context)
     } catch (err) {
       this.inError = true
       this.errorCancellable = false

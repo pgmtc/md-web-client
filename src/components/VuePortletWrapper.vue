@@ -7,7 +7,10 @@
       <icon name="th" class="inline-icon"></icon> {{title}}
     </div>
     <div class="md-portlet-content" v-show="!inError">
-      <component :is="componentToLoad"></component>
+      <component :is="componentToLoad"
+                 :$ctx="$context"
+                 v-on:inProgress="inProgressHandler"
+      ></component>
     </div>
     <div class="md-portlet-error" v-show="inError">
       <div class="title">
@@ -24,6 +27,10 @@
 
 <script>
 import Vue from 'vue'
+import axios from 'axios'
+// import Context from './Context'
+import Context from 'md-lib/client/Context'
+
 export default {
   name: 'portlet-wrapper',
   data: function () {
@@ -37,9 +44,22 @@ export default {
       componentToLoad: null
     }
   },
-  computed: {},
+  computed: {
+    $context () {
+      let ctx = new Context()
+      ctx.WS_ENDPOINT_URL = '/md/ws'
+      ctx.API_ENDPOINT_URL = '/md/api'
+      ctx.def = JSON.stringify(this.def)
+      ctx.axios = axios
+      ctx.socket = this.socket
+      return ctx
+    }
+  },
   methods: {
     method () {
+    },
+    inProgressHandler (value) {
+      this.inProgress = value
     }
   },
   watch: {
@@ -54,6 +74,7 @@ export default {
     if (cmpDef) {
       var cmpName = cmpDef.default.name
       Vue.component(cmpName, cmpDef.default)
+      // Vue.extend(cmpName, cmpDef.default)
       this.componentToLoad = cmpName
     } else {
       this.errorMessage = 'Cannot locate component object: ' + this.def.class
