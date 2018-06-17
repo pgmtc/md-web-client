@@ -1,4 +1,9 @@
-#node_modules
+node_modules
 npm-debug.log
 Dockerfile
 docker-compose.yml
+.editorconfig
+.eslingrc.js
+.gitignore
+.git
+package-lock.json
