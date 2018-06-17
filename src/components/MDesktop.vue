@@ -3,7 +3,7 @@
     <div class="control-bar">
       <div class="title">
         <span class="user-info" v-if="user">{{user.displayName}}</span>
-        mDesktop
+        mDesktop - autoDeployed
       </div>
       <div class="controls">
         <button @click="logout()">Logout</button>
