@@ -42,9 +42,11 @@ export default {
       let ctx = new Context()
       ctx.WS_ENDPOINT_URL = '/md/ws'
       ctx.API_ENDPOINT_URL = '/md/api'
+      ctx.GRPC_ENDPOINT_URL = '/md/grpc'
       ctx.def = JSON.stringify(this.def)
       ctx.axios = axios
       ctx.socket = this.socket
+      console.log(ctx)
 
       var that = this
 
