@@ -1,5 +1,5 @@
 {
-  "name": "md-web-client",
+  "name": "@pgmtc/md-web-client",
   "version": "1.0.0",
   "description": "web client package for mdesktop",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "build": "cross-env NODE_ENV=production node build/build.js",
     "watch": "webpack --config build/webpack.prod.conf.js --watch",
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js --progress --colors --port ${PORT?'ERROR: Environment variable PORT is not set'} --inline --host 0.0.0.0",
-    "start": "http-server dist/ -p ${PORT?'ERROR: Environment variable PORT is not set'}"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -88,6 +88,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "http-server": "^0.11.1"
+    "static-server": "^2.2.1",
+    "winston": "^2.4.2"
   }
 }
