@@ -7,7 +7,8 @@
     "build": "cross-env NODE_ENV=production node build/build.js",
     "watch": "webpack --config build/webpack.prod.conf.js --watch",
     "dev": "webpack-dev-server --config build/webpack.dev.conf.js --progress --colors --port ${PORT?'ERROR: Environment variable PORT is not set'} --inline --host 0.0.0.0",
-    "start": "node server.js"
+    "start": "node server.js",
+    "prepublish": "npm run build",
   },
   "repository": {
     "type": "git",
