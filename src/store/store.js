@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import portlets from './modules/portlets'
-import user from './modules/user'
+import md from './modules/md'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    portlets, user
+    md
   },
   actions: {
   },

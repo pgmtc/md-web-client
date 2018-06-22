@@ -54,19 +54,21 @@ export default {
   name: 'm-desktop',
   data () {
     return {
-      theme: 'light',
       socket: socket
     }
   },
   computed: {
     portlets () {
-      return this.$store.state.portlets.portlets
+      return this.$store.state.md.portlets
     },
     layout () {
-      return this.$store.state.portlets.layout
+      return this.$store.state.md.layout
     },
     user () {
-      return this.$store.state.user.info
+      return this.$store.state.md.user
+    },
+    theme () {
+      return this.$store.state.md.theme
     }
   },
   methods: {
@@ -86,10 +88,7 @@ export default {
   },
   components: {GridLayout, GridItem, JsPortletWrapper, VuePortletWrapper},
   mounted: function () {
-    this.$store.dispatch('loadUser').then((userInfo) => {
-
-    })
-    this.$store.dispatch('loadPortlets').then(() => {
+    this.$store.dispatch('loadContext').then(() => {
 
     })
   }
