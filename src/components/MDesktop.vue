@@ -10,9 +10,9 @@
         <button @click="refresh()">Refresh</button>
         <button @click="saveLayout()">Save Layout</button>
         Theme:
-        <button @click="theme='dark'">Dark</button>
-        <button @click="theme='light'">Light</button>
-        <button @click="theme='bluegreen'">Blue / Green</button>
+        <button @click="setTheme('dark')">Dark</button>
+        <button @click="setTheme('light')">Light</button>
+        <button @click="setTheme('bluegreen')">Blue / Green</button>
       </div>
     </div>
 
@@ -84,6 +84,9 @@ export default {
     },
     getPortlet (index) {
       return this.portlets[index]
+    },
+    setTheme (theme) {
+      this.$store.commit('setTheme', theme)
     }
   },
   components: {GridLayout, GridItem, JsPortletWrapper, VuePortletWrapper},
