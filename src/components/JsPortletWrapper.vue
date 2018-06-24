@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-import Context from 'md-lib/client/Context'
+import Context from '@pgmtc/md-lib/client/Context'
 
 export default {
   name: 'portlet-wrapper',
