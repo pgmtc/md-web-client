@@ -53,6 +53,7 @@ export default {
       ctx.def = JSON.stringify(this.def)
       ctx.axios = axios
       ctx.socket = this.socket
+      ctx.on('error', this.errorHandler)
       return ctx
     }
   },
@@ -61,6 +62,9 @@ export default {
     },
     inProgressHandler (value) {
       this.inProgress = value
+    },
+    errorHandler (err) {
+      alert(err.message ? err.message : err)
     }
   },
   watch: {

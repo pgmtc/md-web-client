@@ -88,7 +88,7 @@
     "not ie <= 8"
   ],
   "dependencies": {
-    "@pgmtc/md-lib": "^1.2.0",
+    "@pgmtc/md-lib": "^1.2.1",
     "static-server": "^2.2.1",
     "winston": "^2.4.2"
   }
