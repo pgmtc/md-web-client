@@ -46,7 +46,9 @@ export default {
       ctx.def = JSON.stringify(this.def)
       ctx.axios = axios
       ctx.socket = this.socket
-      console.log(ctx)
+      ctx.on('error', ::this.errorHandler)
+      ctx.on('progress', ::this.inProgressHandler)
+      ctx.on('title', ::this.setTitleHandler)
 
       var that = this
 
@@ -67,7 +69,14 @@ export default {
     }
   },
   methods: {
-    method () {
+    inProgressHandler (value) {
+      this.inProgress = value
+    },
+    errorHandler (err) {
+      this.$emit('error', err)
+    },
+    setTitleHandler (value) {
+      this.title = value
     }
   },
   watch: {

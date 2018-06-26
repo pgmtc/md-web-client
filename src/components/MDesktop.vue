@@ -32,7 +32,9 @@
                      :def="getPortlet(item.i)"
                      :title="getPortlet(item.i).name"
                      :url="getPortlet(item.i).url"
-                     :socket="socket" />
+                     :socket="socket"
+                     @error="errorHandler($event, item.i)"
+          />
 
         </grid-item>
       </grid-layout>
@@ -72,6 +74,9 @@ export default {
     }
   },
   methods: {
+    errorHandler (err, id) {
+      alert(`${id} error: ${err}`)
+    },
     refresh () {
       socket.emit('refresh', true)
     },

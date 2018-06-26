@@ -53,18 +53,21 @@ export default {
       ctx.def = JSON.stringify(this.def)
       ctx.axios = axios
       ctx.socket = this.socket
-      ctx.on('error', this.errorHandler)
+      ctx.on('error', ::this.errorHandler)
+      ctx.on('progress', ::this.inProgressHandler)
+      ctx.on('title', ::this.setTitleHandler)
       return ctx
     }
   },
   methods: {
-    method () {
-    },
     inProgressHandler (value) {
       this.inProgress = value
     },
     errorHandler (err) {
-      alert(err.message ? err.message : err)
+      this.$emit('error', err)
+    },
+    setTitleHandler (value) {
+      this.title = value
     }
   },
   watch: {
