@@ -78,7 +78,7 @@ export default {
   async mounted () {
     /* eslint no-eval: 0 */
     this.title = this.def.name
-    var cmpDef = window.vuePortlet
+    var cmpDef = window[this.def.id]
     if (cmpDef) {
       var cmpName = cmpDef.default.name
       Vue.component(cmpName, cmpDef.default)
